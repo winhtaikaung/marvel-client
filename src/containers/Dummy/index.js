@@ -12,8 +12,12 @@ import saga from './saga'
 
 export class DummyContainer extends React.Component {
 
+  componentDidMount(){
+    this.props.fetchDummyAPI()
+  }
 
   render(){
+    console.log(this.props)
     return <div>Dummy Container is here</div>
   }
 }

@@ -11,7 +11,7 @@ const callApi = ({
   headers = undefined,
   formdata = undefined,
 } = {}) => {
-  const root = `https://jsonmock.com`;
+  const root = `https://api.myjson.com`;
   const url = root + endpoint;
 
   let query = {

@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import '@babel/polyfill';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router/immutable';
-import { Route, Switch } from 'react-router-dom'
+
 import history from './utils/history';
 import 'sanitize.css/sanitize.css';
 import './index.css';
 import App from './containers/App/App';
-import DummyContainer from './containers/Dummy'
 import * as serviceWorker from './serviceWorker';
 /**
  * app.js
@@ -23,7 +22,7 @@ import configureStore from './configureStore';
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('root');
-console.log(store)
+
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
