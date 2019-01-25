@@ -3,7 +3,7 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux'
-// import { fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import { routerMiddleware } from 'connected-react-router/immutable'
 import createSagaMiddleware from 'redux-saga'
 import createReducer from './reducers'
@@ -45,7 +45,7 @@ export default function configureStore(initialState = {}, history) {
     // fromJS(initialState),
     composeEnhancers(...enhancers)
   )
-
+// console.log(store)
   // Extensions
   store.runSaga = sagaMiddleware.run
   store.injectedReducers = {} // Reducer registry
