@@ -7,7 +7,8 @@ import { Route, Switch } from 'react-router-dom'
 import history from './utils/history';
 import 'sanitize.css/sanitize.css';
 import './index.css';
-import App from './containers/App';
+import App from './containers/App/App';
+import DummyContainer from './containers/Dummy'
 import * as serviceWorker from './serviceWorker';
 /**
  * app.js
@@ -22,14 +23,12 @@ import configureStore from './configureStore';
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('root');
-
+console.log(store)
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <Switch>
-                <Route path="/" component={App}/>
-            </Switch>
+      <ConnectedRouter history={history}>
+        <App/>
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
@@ -40,27 +39,7 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(
-    <Provider store={store}>
-       <ConnectedRouter history={history}>
-            <Switch>
-                <Route path="/" component={App}/>
-            </Switch>
-      </ConnectedRouter>
-    </Provider>,
-    () => {
-      const NextApp = (
-        <Provider store={store}>
-           <ConnectedRouter history={history}>
-            <Switch>
-                <Route path="/" component={App}/>
-            </Switch>
-      </ConnectedRouter>
-        </Provider>
-      )
-      render(<NextApp />, MOUNT_NODE)
-    }
-  )
+
 }
 
 

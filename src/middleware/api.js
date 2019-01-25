@@ -11,7 +11,7 @@ const callApi = ({
   headers = undefined,
   formdata = undefined,
 } = {}) => {
-  const root = `${process.env.REACT_APP_API_URL}`;
+  const root = `https://jsonmock.com`;
   const url = root + endpoint;
 
   let query = {

@@ -6,6 +6,7 @@ import createReducer from '../reducers';
 
 export function injectReducerFactory(store, isValid) {
   return function injectReducer(key, reducer) {
+
     if (!isValid) checkStore(store);
 
     invariant(
@@ -26,7 +27,9 @@ export function injectReducerFactory(store, isValid) {
 }
 
 export default function getInjectors(store) {
+  console.log(store)
   checkStore(store);
+
   return {
     injectReducer: injectReducerFactory(store, true),
   };
