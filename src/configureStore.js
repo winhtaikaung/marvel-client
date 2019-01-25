@@ -3,7 +3,6 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux'
-import { fromJS } from 'immutable';
 import { routerMiddleware } from 'connected-react-router/immutable'
 import createSagaMiddleware from 'redux-saga'
 import createReducer from './reducers'
