@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect'
 
 import { connect } from 'react-redux'
 
-import Home from '../containers/Dummy'
+import Home from '../containers/Home'
 // import Trips from 'containers/Trips/'
 // import Orders from 'containers/Orders/'
 // import Create from 'containers/Create/'

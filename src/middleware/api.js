@@ -11,7 +11,7 @@ const callApi = ({
   headers = undefined,
   formdata = undefined,
 } = {}) => {
-  const root = `https://api.myjson.com`;
+  const root = `http://cors-anywhere.herokuapp.com/`;
   const url = root + endpoint;
 
   let query = {
