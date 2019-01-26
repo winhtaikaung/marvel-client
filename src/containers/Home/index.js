@@ -59,7 +59,9 @@ export class HomeContainer extends React.Component {
                       marginTop: `4em`,
                       WebkitBoxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
                       MozBoxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
-                      boxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)"
+                      boxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                      transition:`translate(0px, 0px)`,
+                      opacity:`1`
                     }}
                   >
                     <Skeleton loading={this.props.loading} active>
