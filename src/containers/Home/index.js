@@ -47,7 +47,7 @@ export class HomeContainer extends React.Component {
               </Col>
             </Row>
           </header>
-          <Content style={{ maxHeight: `80vh`, overflow: `scroll` }}>
+          <Content style={{ height: `70vh`, overflow: `scroll` }}>
             <div
               style={{ padding: "15px", marginLeft: `2em`, marginRight: `2em` }}
             >
@@ -66,14 +66,15 @@ export class HomeContainer extends React.Component {
                         cover={
                           <img
                             alt="example"
-                            style={{ minHeight: `443px`, maxHeight: `800px` }}
+                            // style={{ height: `300px`, maxHeight: `800px` }}
+                            height="400"
                             src={`${item.thumbnail.path}.${
                               item.thumbnail.extension
                             }`}
                           />
                         }
                         style={{
-                          marginTop: `4em`,
+                          marginTop: `2em`,
                           WebkitBoxShadow:
                             "-2px 10px 44px -2px rgba(0,0,0,0.13)",
                           MozBoxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
