@@ -6,7 +6,7 @@ import { createStructuredSelector } from "reselect";
 import { Row, Col, Card, Input, Skeleton } from "antd";
 import injectReducer from "../../utils/injectReducer";
 import injectSaga from "../../utils/injectSaga";
-
+import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import { getSearchCharacter } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
@@ -16,6 +16,7 @@ import {
   makeSelectmeta,
   makeSelectLoading
 } from "./selector";
+import Drawer from "../Drawer/index";
 
 const Search = Input.Search;
 export class HomeContainer extends React.Component {
@@ -24,9 +25,11 @@ export class HomeContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Fragment>
+        <Switch>
+          <Route path={`${this.props.match.url}/:id`} component={Drawer} />
+        </Switch>
         <Row gutter={24} style={{ marginTop: `calc(100vh/10)` }}>
           <Col span={4} push={4} />
           <Col span={19}>
@@ -44,12 +47,17 @@ export class HomeContainer extends React.Component {
               return (
                 <Col key={index} xs={24} sm={12} md={8} lg={8}>
                   <Card
+                    onClick={() => {
+                      this.props.history.push(
+                        `${this.props.match.url}/${item.id}`
+                      );
+                    }}
                     hoverable={true}
                     bordered={true}
                     cover={
                       <img
                         alt="example"
-                        height="443"
+                        style={{ minHeight: `443px`, maxHeight: `800px` }}
                         src={`${item.thumbnail.path}.${
                           item.thumbnail.extension
                         }`}
@@ -100,8 +108,10 @@ const withConnect = connect(
 const withReducer = injectReducer({ key: "home", reducer });
 const withSaga = injectSaga({ key: "home", saga });
 
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect
-)(HomeContainer);
+export default withRouter(
+  compose(
+    withReducer,
+    withSaga,
+    withConnect
+  )(HomeContainer)
+);
