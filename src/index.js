@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import '@babel/polyfill';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router/immutable';
+import React from "react";
+import ReactDOM from "react-dom";
+import "@babel/polyfill";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router/immutable";
 
-import history from './utils/history';
-import 'sanitize.css/sanitize.css';
-import './index.css';
-import App from './containers/App/App';
-import * as serviceWorker from './serviceWorker';
+import history from "./utils/history";
+import "sanitize.css/sanitize.css";
+import "./index.css";
+import App from "./containers/App/App";
+import * as serviceWorker from "./serviceWorker";
 /**
  * app.js
  *
@@ -16,21 +16,24 @@ import * as serviceWorker from './serviceWorker';
  * code.
  */
 // Import all the third party stuff
-import configureStore from './configureStore';
+import configureStore from "./configureStore";
+import { Switch } from "react-router-dom";
 
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById('root');
+const MOUNT_NODE = document.getElementById("root");
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App/>
+        <Switch>
+          <App />
+        </Switch>
       </ConnectedRouter>
     </Provider>,
-    MOUNT_NODE,
+    MOUNT_NODE
   );
 };
 
@@ -38,16 +41,13 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-
 }
-
-
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+if (process.env.NODE_ENV === "production") {
+  require("offline-plugin/runtime").install(); // eslint-disable-line global-require
 }
-render()
+render();
 serviceWorker.unregister();
