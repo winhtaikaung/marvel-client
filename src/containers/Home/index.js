@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import { createStructuredSelector } from "reselect";
-import { Row, Col, Card, Input, Skeleton } from "antd";
+import { Row, Col, Card, Input, Skeleton, Layout } from "antd";
 import injectReducer from "../../utils/injectReducer";
 import injectSaga from "../../utils/injectSaga";
 import { withRouter, Switch, Route, Redirect } from "react-router-dom";
@@ -17,7 +17,7 @@ import {
   makeSelectLoading
 } from "./selector";
 import Drawer from "../Drawer/index";
-
+const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export class HomeContainer extends React.Component {
   componentWillMount() {
@@ -30,60 +30,75 @@ export class HomeContainer extends React.Component {
         <Switch>
           <Route path={`${this.props.match.url}/:id`} component={Drawer} />
         </Switch>
-        <Row gutter={24} style={{ marginTop: `calc(100vh/10)` }}>
-          <Col span={4} push={4} />
-          <Col span={19}>
-            <Search
-              placeholder="input search text"
-              onSearch={value => this.props.searchCharacter({ name: value })}
-              enterButton
-            />
-          </Col>
-        </Row>
+        <Layout>
+          <header style={{ padding: `calc(100vh/40)` }}>
+            <Row gutter={24}>
+              <Col span={4} push={4} />
+              <Col span={19}>
+                <Search
+                  placeholder="input search text"
+                  size="large"
+                  onSearch={value =>
+                    this.props.searchCharacter({ name: value })
+                  }
+                  style={{borderRadius:`50px`}}
+                  enterButton
+                />
+              </Col>
+            </Row>
+          </header>
+          <Content style={{ maxHeight: `80vh`, overflow: `scroll` }}>
+            <div
+              style={{ padding: "15px", marginLeft: `2em`, marginRight: `2em` }}
+            >
+              <Row gutter={24}>
+                {this.props.data.map((item, index) => {
+                  return (
+                    <Col key={index} xs={24} sm={12} md={8} lg={8}>
+                      <Card
+                        onClick={() => {
+                          this.props.history.push(
+                            `${this.props.match.url}/${item.id}`
+                          );
+                        }}
+                        hoverable={true}
+                        bordered={true}
+                        cover={
+                          <img
+                            alt="example"
+                            style={{ minHeight: `443px`, maxHeight: `800px` }}
+                            src={`${item.thumbnail.path}.${
+                              item.thumbnail.extension
+                            }`}
+                          />
+                        }
+                        style={{
+                          marginTop: `4em`,
+                          WebkitBoxShadow:
+                            "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                          MozBoxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                          boxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                          transition: `translate(0px, 0px)`,
+                          opacity: `1`
+                        }}
+                      >
+                        <Skeleton loading={this.props.loading} active>
+                          <div>
+                            <h2>{item.name}</h2>
+                            <p>{item.descriptions}</p>
+                          </div>
+                        </Skeleton>
+                      </Card>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </div>
+          </Content>
+          <Footer>Footer</Footer>
+        </Layout>
+
         {/* Movie List to be rendered Here */}
-        <div style={{ padding: "30px", marginLeft: `2em`, marginRight: `2em` }}>
-          <Row gutter={24}>
-            {this.props.data.map((item, index) => {
-              return (
-                <Col key={index} xs={24} sm={12} md={8} lg={8}>
-                  <Card
-                    onClick={() => {
-                      this.props.history.push(
-                        `${this.props.match.url}/${item.id}`
-                      );
-                    }}
-                    hoverable={true}
-                    bordered={true}
-                    cover={
-                      <img
-                        alt="example"
-                        style={{ minHeight: `443px`, maxHeight: `800px` }}
-                        src={`${item.thumbnail.path}.${
-                          item.thumbnail.extension
-                        }`}
-                      />
-                    }
-                    style={{
-                      marginTop: `4em`,
-                      WebkitBoxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
-                      MozBoxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
-                      boxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
-                      transition:`translate(0px, 0px)`,
-                      opacity:`1`
-                    }}
-                  >
-                    <Skeleton loading={this.props.loading} active>
-                      <div>
-                        <h2>{item.name}</h2>
-                        <p>{item.descriptions}</p>
-                      </div>
-                    </Skeleton>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
-        </div>
       </Fragment>
     );
   }
