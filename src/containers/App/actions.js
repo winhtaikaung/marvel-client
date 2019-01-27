@@ -4,7 +4,8 @@ import {POST_SIGN_IN,POST_SIGN_IN_SUCCESS,POST_SIGN_IN_FAILED,POST_REGISTER, POS
 export const userSignIn = (payload,callback) => {
     return {
       type: POST_SIGN_IN,
-      endpoint: `https://reqres.in/api/login`,
+      rootUrl:`https://reqres.in`,
+      endpoint: `/api/login`,
       noAuth: true,
       method: 'post',
       types: [POST_SIGN_IN, POST_SIGN_IN_SUCCESS, POST_SIGN_IN_FAILED],
@@ -20,7 +21,8 @@ export const userSignIn = (payload,callback) => {
   export const userRegister = (payload,callback) => {
     return {
       type: POST_REGISTER,
-      endpoint: `https://reqres.in/api/register`,
+      rootUrl:`https://reqres.in`,
+      endpoint: `/api/register`,
       noAuth: true,
       method: 'post',
       types: [POST_REGISTER, POST_REGISTER_SUCCESS, POST_REGISTER_FAILED],

@@ -21,8 +21,12 @@ import PagingComponent from "../../components/PagingComponent";
 const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export class HomeContainer extends React.Component {
-  componentWillMount() {
-    this.props.searchCharacter({ name: "a" });
+
+  state={
+    searchKey:"a"
+  }
+  componentDidMount() {
+    this.props.searchCharacter({ nameStartsWith: "a",offset:0,limit:18 });
   }
 
   render() {
@@ -39,9 +43,14 @@ export class HomeContainer extends React.Component {
                 <Search
                   placeholder="Please type something to start searching"
                   size="large"
-                  onSearch={value =>
-                    this.props.searchCharacter({ name: value })
-                  }
+                  onChange={(e)=>{
+                    
+                    this.setState({searchKey:e.target.value});
+                  }}
+                  onSearch={value =>{
+                    this.setState({searchKey:value});
+                    this.props.searchCharacter({ nameStartsWith: value,offset:0,limit:18 })
+                  }}
                   style={{ borderRadius: `50px` }}
                   enterButton
                 />
@@ -112,10 +121,10 @@ export class HomeContainer extends React.Component {
             <PagingComponent
               meta={this.props.meta}
               onPrevClick={(pagenum) => {
-                console.log(pagenum);
+                this.props.searchCharacter({ nameStartsWith: this.state.searchKey,offset:pagenum,limit:18 })
               }}
               onNextClick={(pagenum) => {
-                console.log(pagenum);
+                this.props.searchCharacter({ nameStartsWith: this.state.searchKey,offset:pagenum,limit:18 })
               }}
             />
           </Footer>

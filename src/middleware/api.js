@@ -6,14 +6,15 @@ import _ from 'lodash';
 
 const callApi = ({
   endpoint = undefined,
+  rootUrl=undefined,
   method = undefined,
   params = undefined,
   headers = undefined,
   formdata = undefined,
 } = {}) => {
-  const root = `http://cors-anywhere.herokuapp.com/`;
+  const root = (rootUrl)?rootUrl:`http://cors-anywhere.herokuapp.com/`;
   const url = root + endpoint;
-
+  
   let query = {
     method,
     url,
@@ -98,6 +99,7 @@ export function* commonSaga(action) {
     }
     const response = yield callApi({ ...action, headers: headers });
     //Raise an error if respose status code returns 500,400,
+    try{
     if (
       ![
         200,
@@ -142,6 +144,13 @@ export function* commonSaga(action) {
     if (nextAction) {
       yield put({ ...nextAction });
     }
+  }catch(ex){
+    yield put({ type: types[2], payload: {}, error: ex });
+    if (callback) {
+      action.callback(undefined, ex);
+    }
+    
+  }
   } catch (e) {
 
     yield put({ type: types[2], payload: e.data, error: e });

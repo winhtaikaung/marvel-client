@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button, Checkbox, notification } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
@@ -73,11 +73,22 @@ const LoginForm = withFormik({
     
   },
   handleSubmit:(values,{props,setSubmitting,resetForm})=>{
-    props.doLogin(values,(response,error)=>{
-      setSubmitting(false)
-      if (response){
-        
+    props.doLogin(values,(response,err)=>{
+      
+      if(response){
+        notification.success({
+          duration: 5,
+          message: "Login Success!",
+          
+        });
+      }else{
+        notification.error({
+          message: "Oops Something went wrong!",
+          description:
+            "Login failed due to server error.Please Try again"
+        });
       }
+      setSubmitting(false)
     })
     
   },
@@ -85,7 +96,7 @@ const LoginForm = withFormik({
 })(Login);
 
 const mapDispatchToProps = dispatch => ({
-  doLogin:(payload)=>dispatch(userSignIn(payload))
+  doLogin:(payload,callback)=>dispatch(userSignIn(payload,callback))
 });
 const mapStateToProps = createStructuredSelector({
   currentUser: makeSelectCurrentUser(),
