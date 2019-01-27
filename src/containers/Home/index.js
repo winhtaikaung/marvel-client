@@ -48,6 +48,7 @@ export class HomeContainer extends React.Component {
             </Row>
           </header>
           <Content style={{ height: `70vh`, overflow: `scroll` }}>
+            <Skeleton loading={this.props.loading} paragraph={{ rows: 20 }}active>
             <div
               style={{ padding: "15px", marginLeft: `2em`, marginRight: `2em` }}
             >
@@ -95,6 +96,7 @@ export class HomeContainer extends React.Component {
                 })}
               </Row>
             </div>
+            </Skeleton>
           </Content>
           <Footer>Footer</Footer>
         </Layout>

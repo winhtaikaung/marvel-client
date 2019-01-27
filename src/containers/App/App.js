@@ -60,7 +60,7 @@ class App extends Component {
       return <Redirect to={redirection} />;
     }
     return (
-      <div>
+      <React.Fragment>
         <Layout>
           <Header>
             <div className="logo" />
@@ -76,7 +76,7 @@ class App extends Component {
               <Menu.Item key="2">Register</Menu.Item>
             </Menu>
           </Header>
-          <Layout>
+          
             <Content>
               <div style={{ minHeight: `100vh` }}>
                 <Switch>
@@ -95,8 +95,8 @@ class App extends Component {
               </div>
             </Content>
           </Layout>
-        </Layout>
-      </div>
+        
+      </React.Fragment>
     );
   }
 }
