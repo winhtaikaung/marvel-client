@@ -9,7 +9,8 @@ export const getSearchCharacter = (payload, callBack) => {
     types: [
       GET_CHARACTER_SEARCH_API, GET_CHARACTER_SEARCH_API_SUCCESS, GET_CHARACTER_SEARCH_API_FAILED
     ],
-    params:payload
+    params:payload,
+    callBack:callBack
 
   }
 };

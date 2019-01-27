@@ -1,9 +1,17 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { Link } from "react-router-dom";
 import { withFormik } from "formik";
+import {makeSelectCurrentUser, makeSelectLoading, makeSelectAuthUser,makeSelectError} from '../../containers/App/selectors';
+import {userSignIn} from '../../containers/App/actions';
+
+import {createStructuredSelector} from 'reselect';
+
 const Login = (props) => {
   const { handleSubmit, handleChange, errors,isValid,dirty ,isSubmitting } = props;
+  
   return (
     <div
       style={{
@@ -65,10 +73,29 @@ const LoginForm = withFormik({
     
   },
   handleSubmit:(values,{props,setSubmitting,resetForm})=>{
-    console.log(values)
+    props.doLogin(values,(response,error)=>{
+      setSubmitting(false)
+      if (response){
+        
+      }
+    })
     
   },
   displayName:"LoginForm"
 })(Login);
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ({
+  doLogin:(payload)=>dispatch(userSignIn(payload))
+});
+const mapStateToProps = createStructuredSelector({
+  currentUser: makeSelectCurrentUser(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+  authUser: makeSelectAuthUser(),
+
+});
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+export default compose(withConnect)(LoginForm);

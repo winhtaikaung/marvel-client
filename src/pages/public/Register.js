@@ -1,9 +1,26 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button, notification } from "antd";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { Link } from "react-router-dom";
 import { withFormik } from "formik";
+import {
+  makeSelectCurrentUser,
+  makeSelectLoading,
+  makeSelectAuthUser,
+  makeSelectError
+} from "../../containers/App/selectors";
+import {  userRegister } from "../../containers/App/actions";
+import { createStructuredSelector } from "reselect";
 const Register = props => {
-  const { handleSubmit, handleChange, errors,isValid,dirty ,isSubmitting } = props;
+  const {
+    handleSubmit,
+    handleChange,
+    errors,
+    isValid,
+    dirty,
+    isSubmitting
+  } = props;
   console.log(props);
   return (
     <div
@@ -50,8 +67,12 @@ const Register = props => {
           />
         </Form.Item>
         <Form.Item>
-         
-          <Button disabled={!(dirty && isValid) || isSubmitting} type="primary" htmlType="submit" style={{ width: `100%` }}>
+          <Button
+            disabled={!(dirty && isValid) || isSubmitting}
+            type="primary"
+            htmlType="submit"
+            style={{ width: `100%` }}
+          >
             Register
           </Button>
           Already have an account? <Link to="login">Sign In here</Link>
@@ -85,16 +106,46 @@ const RegisterForm = withFormik({
     }
 
     if (values.password !== values.confirm_password) {
-      
       errors.confirm_password = "Confirm Password and password should match";
     }
 
     return errors;
   },
   handleSubmit: (values, { props, setSubmitting, resetForm }) => {
-    console.log(values);
+    props.doRegister(values, (response, error) => {
+      setSubmitting(false);
+      if (response) {
+        
+        notification.success({
+          duration: 0,
+          message: "Registration success!",
+          description: <p>Click <a href="/login">here</a> to Login</p>
+        });
+      } else {
+        notification.error({
+          message: "Oops Something went wrong!",
+          description:
+            "You registration process was failed due to server error.Please Try again"
+        });
+      }
+    });
   },
   displayName: "RegisterForm"
 })(Register);
 
-export default RegisterForm;
+const mapDispatchToProps = dispatch => ({
+  doRegister: (payload, callback) => dispatch(userRegister(payload, callback))
+});
+const mapStateToProps = createStructuredSelector({
+  currentUser: makeSelectCurrentUser(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+  authUser: makeSelectAuthUser()
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+export default compose(withConnect)(RegisterForm);

@@ -27,7 +27,7 @@ const RestrictedRoute = (props) => {
 
 class App extends Component {
   render() {
-    const { match, currentUser, location } = this.props;
+    const { match, currentUser, location,history } = this.props;
     
     let redirection = "/p/home";
     let loc = (window.location + "").split("://");
@@ -59,13 +59,15 @@ class App extends Component {
             <Menu
               theme="dark"
               mode="horizontal"
-              defaultSelectedKeys={["2"]}
+              
               style={{ lineHeight: "64px", float: `right` }}
             >
               <Menu.Item key="1" onClick={()=>{
-                console.log("1")
+                history.push("/login")
               }}>Login</Menu.Item>
-              <Menu.Item key="2">Register</Menu.Item>
+              <Menu.Item key="2" onClick={()=>{
+                history.push("/register")
+              }}>Register</Menu.Item>
             </Menu>
           </Header>
           
@@ -75,14 +77,12 @@ class App extends Component {
                   <RestrictedRoute
                     {...this.props}
                     path={`${match.url}p`}
-                    currentUser={true}
+                    currentUser={currentUser}
                     component={IndexPage}
                   />
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/register" component={Register} />
-                  {/* <Route exact path="/signin" component={SignInPage}/>
-            <Route exact path="/reset_password" component={ResetPassword}/>
-    <Route exact path="/pwd" component={ForgetPassword}/>*/}
+                 
                   <Route path="*" component={NotFoundPage} />
                 </Switch>
               </div>

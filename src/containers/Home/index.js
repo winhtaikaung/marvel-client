@@ -37,7 +37,7 @@ export class HomeContainer extends React.Component {
               <Col span={4} push={4} />
               <Col span={19}>
                 <Search
-                  placeholder="input search text"
+                  placeholder="Please type something to start searching"
                   size="large"
                   onSearch={value =>
                     this.props.searchCharacter({ name: value })

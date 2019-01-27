@@ -8,3 +8,9 @@ export const makeSelectCurrentUser = () =>
 export const makeSelectAuthUser = () =>
   createSelector(selectGlobal, globalState => globalState.authUser)
 
+export const makeSelectLoading= () =>
+  createSelector(selectGlobal, globalState => globalState.loading)
+
+export const makeSelectError= () =>
+  createSelector(selectGlobal, globalState => globalState.error)
+
