@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
 import { Button, Icon } from "antd";
-const PagingComponent = ({meta,onPrevClick,onNextClick}) => {
+const PagingComponent = ({meta,onPrevClick,onNextClick,loading}) => {
   
   return (
     <Button.Group style={{ float: `right` }} size={"large"}>
-      {meta.offset>0 && <Button type="primary" onClick={()=>onPrevClick(meta.offset-1)}>
+      {meta.offset>0 && <Button type="primary" onClick={()=>onPrevClick(meta.offset-1)} loading={loading}>
         <Icon type="left" />
         Prev
       </Button>
       }
-      {meta.offset<Math.ceil(meta.total/meta.limit)&& <Button type="primary" onClick={()=>onNextClick(meta.offset+1)}>
+      {meta.offset<Math.ceil(meta.total/meta.limit)&& <Button type="primary" onClick={()=>onNextClick(meta.offset+1)} loading={loading}>
         Next
         <Icon type="right" />
       </Button>}

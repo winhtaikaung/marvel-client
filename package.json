@@ -6,6 +6,7 @@
     "antd": "^3.12.4",
     "axios": "^0.18.0",
     "connected-react-router": "^5.0.1",
+    "formik": "^1.4.2",
     "history": "^4.7.2",
     "hoist-non-react-statics": "^3.3.0",
     "immer": "^1.12.1",
