@@ -17,7 +17,9 @@ import {
   makeSelectLoading
 } from "./selector";
 import Drawer from "../Drawer/index";
+import StateDrawer from "../Drawer/StateDrawer";
 import PagingComponent from "../../components/PagingComponent";
+import {getCharacterDetail} from '../Drawer/actions';
 const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export class HomeContainer extends React.Component {
@@ -37,7 +39,7 @@ export class HomeContainer extends React.Component {
         <Switch>
           <Route path={`${this.props.match.url}/:id`} component={Drawer} />
         </Switch>
-        <Drawer isOpen={this.state.isDrawerOpen} onClose={()=>this.setState({isDrawerOpen:!this.state.isDrawerOpen,id:""})} id={this.state.id}/>
+        <StateDrawer isOpen={this.state.isDrawerOpen} onClose={()=>this.setState({isDrawerOpen:!this.state.isDrawerOpen,id:""})} id={this.state.id}/>
         <Layout>
           <header style={{ padding: `calc(100vh/40)` }}>
             <Row gutter={24}>
@@ -79,7 +81,10 @@ export class HomeContainer extends React.Component {
                       <Col key={index} xs={24} sm={12} md={8} lg={8}>
                         <Card
                           onClick={() => {
-                           this.setState({isDrawerOpen:true,id:item.id})
+                            
+                           this.setState({isDrawerOpen:true,id:item.id},()=>{
+                             this.props.fetchCharacterDetail({id:item.id})
+                           })
                           }}
                           hoverable={true}
                           bordered={true}
@@ -146,7 +151,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchCharacter: payload => dispatch(getSearchCharacter(payload))
+    searchCharacter: payload => dispatch(getSearchCharacter(payload)),
+    fetchCharacterDetail: payload => dispatch(getCharacterDetail(payload))
   };
 };
 
