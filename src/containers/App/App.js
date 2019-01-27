@@ -3,13 +3,15 @@ import logo from "./logo.svg";
 
 import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import { Layout,  } from "antd";
 import { createStructuredSelector } from "reselect";
 import { makeSelectCurrentUser } from "./selectors";
 import Login from "../../pages/public/Login";
 import NotFoundPage from "../../pages/public/NotFoundPage";
 import IndexPage from "../../pages/";
 import Register from "../../pages/public/Register";
+import AuthenticatedMenu from "../../components/AuthenticatedMenu";
+import {userSignOut} from './actions';
 
 const { Header, Content } = Layout;
 
@@ -56,19 +58,7 @@ class App extends Component {
         <Layout>
           <Header>
             <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              
-              style={{ lineHeight: "64px", float: `right` }}
-            >
-              <Menu.Item key="1" onClick={()=>{
-                history.push("/login")
-              }}>Login</Menu.Item>
-              <Menu.Item key="2" onClick={()=>{
-                history.push("/register")
-              }}>Register</Menu.Item>
-            </Menu>
+            <AuthenticatedMenu {...this.props}/>
           </Header>
           
             <Content>
@@ -94,7 +84,9 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  signOut:()=>dispatch(userSignOut())
+});
 const mapStateToProps = createStructuredSelector({
   currentUser: makeSelectCurrentUser()
 });

@@ -21,7 +21,7 @@ const Register = props => {
     dirty,
     isSubmitting
   } = props;
-  console.log(props);
+  
   return (
     <div
       style={{
