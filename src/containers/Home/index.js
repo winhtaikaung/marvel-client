@@ -23,7 +23,9 @@ const Search = Input.Search;
 export class HomeContainer extends React.Component {
 
   state={
-    searchKey:"a"
+    searchKey:"a",
+    isDrawerOpen:false,
+    id:""
   }
   componentDidMount() {
     this.props.searchCharacter({ nameStartsWith: "a",offset:0,limit:18 });
@@ -35,6 +37,7 @@ export class HomeContainer extends React.Component {
         <Switch>
           <Route path={`${this.props.match.url}/:id`} component={Drawer} />
         </Switch>
+        <Drawer isOpen={this.state.isDrawerOpen} onClose={()=>this.setState({isDrawerOpen:!this.state.isDrawerOpen,id:""})} id={this.state.id}/>
         <Layout>
           <header style={{ padding: `calc(100vh/40)` }}>
             <Row gutter={24}>
@@ -76,9 +79,7 @@ export class HomeContainer extends React.Component {
                       <Col key={index} xs={24} sm={12} md={8} lg={8}>
                         <Card
                           onClick={() => {
-                            this.props.history.push(
-                              `${this.props.match.url}/${item.id}`
-                            );
+                           this.setState({isDrawerOpen:true,id:item.id})
                           }}
                           hoverable={true}
                           bordered={true}
