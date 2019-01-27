@@ -13,8 +13,9 @@ import Register from "../../pages/public/Register";
 
 const { Header, Content } = Layout;
 
-const RestrictedRoute = ({ component: Component, currentUser, ...rest }) => (
-  <Route
+const RestrictedRoute = ({ component: Component, currentUser, ...rest }) => {
+  console.log(currentUser)
+  return (<Route
     {...rest}
     render={props =>
       currentUser ? (
@@ -30,13 +31,13 @@ const RestrictedRoute = ({ component: Component, currentUser, ...rest }) => (
         />
       )
     }
-  />
-);
+  />)
+  };
 
 class App extends Component {
   render() {
     const { match, currentUser, location } = this.props;
-
+console.log(currentUser)
     let redirection = "/p/dummy";
     let loc = (window.location + "").split("://");
     loc = loc[loc.length - 1];
@@ -56,7 +57,7 @@ class App extends Component {
       location.pathname === "/dummy/"
     ) {
       return <Redirect to={redirection} />;
-    } else if (currentUser && location.pathname === "/app/login") {
+    } else if (currentUser && location.pathname.indexOf("login")===1) {
       return <Redirect to={redirection} />;
     }
     return (
@@ -82,7 +83,7 @@ class App extends Component {
                 <Switch>
                   <RestrictedRoute
                     path={`${match.url}p`}
-                    currentUser={{"":""}}
+                    currentUser={true}
                     component={IndexPage}
                   />
                   <Route exact path="/login" component={Login} />

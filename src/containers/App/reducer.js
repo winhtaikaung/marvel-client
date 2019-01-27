@@ -21,7 +21,6 @@ const appReducer = (state = initialState, action) => {
         loading: true
       };
     }
-    case POST_REGISTER_SUCCESS:
     case POST_SIGN_IN_SUCCESS: {
       return {
         ...state,
@@ -30,6 +29,14 @@ const appReducer = (state = initialState, action) => {
         authUser: action.payload
       };
     }
+
+    case POST_REGISTER_SUCCESS:
+    return {
+      ...state,
+      loading: false,
+      currentUser: true,
+      authUser: action.payload
+    };
     case POST_REGISTER_FAILED:
     case POST_SIGN_IN_FAILED: {
       return {
