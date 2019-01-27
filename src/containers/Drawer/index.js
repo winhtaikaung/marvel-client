@@ -81,7 +81,7 @@ class DrawerContainer extends React.PureComponent {
           placement="left"
           closable={true}
           onClose={() => {
-            history.push("/p/dummy");
+            history.push("/p/home");
           }}
           visible={true}
         >

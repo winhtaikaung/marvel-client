@@ -32,7 +32,7 @@ class IndexPage extends Component {
         {/* <CustomAppBar title={this.state.title} /> */}
         <div >
           <Switch>
-            <Route path={`${match.url}/dummy`} component={Home} />
+            <Route path={`${match.url}/home`} component={Home} />
             {/* <Route path={`${match.url}/trips`} component={Trips} />
             <Route path={`${match.url}/orders`} component={Orders} />
             <Route path={`${match.url}/profile`} component={Profile} />

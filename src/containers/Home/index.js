@@ -111,11 +111,11 @@ export class HomeContainer extends React.Component {
           <Footer>
             <PagingComponent
               meta={this.props.meta}
-              onPrevClick={() => {
-                console.log("prev click");
+              onPrevClick={(pagenum) => {
+                console.log(pagenum);
               }}
-              onNextClick={() => {
-                console.log("next click");
+              onNextClick={(pagenum) => {
+                console.log(pagenum);
               }}
             />
           </Footer>

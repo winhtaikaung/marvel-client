@@ -13,51 +13,42 @@ import Register from "../../pages/public/Register";
 
 const { Header, Content } = Layout;
 
-const RestrictedRoute = ({ component: Component, currentUser, ...rest }) => {
-  console.log(currentUser)
-  return (<Route
-    {...rest}
-    render={props =>
-      currentUser ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: {
-              from: props.location
-            }
-          }}
-        />
-      )
-    }
-  />)
+const RestrictedRoute = (props) => {
+  const { component: Component, currentUser, ...rest } = props
+    
+    return (<Route  {...rest}  render={props => currentUser ? 
+      ( <Component {...props} /> ) : 
+      ( <Redirect to={{ pathname: "/login", state: {from: props.location } }} />) 
+      }
+    />)
+  
+  
   };
 
 class App extends Component {
   render() {
     const { match, currentUser, location } = this.props;
-console.log(currentUser)
-    let redirection = "/p/dummy";
+    
+    let redirection = "/p/home";
     let loc = (window.location + "").split("://");
     loc = loc[loc.length - 1];
     loc = loc.split("/")[1] + "";
     if (
-      loc.indexOf("dummy") === 0 &&
+      loc.indexOf("home") === 0 &&
       !(window.location + "").indexOf("localhost:") >= 0
     ) {
       // not on localhost with /p/ prefix
-      redirection = "/dummy" + redirection;
+      redirection = "/home" + redirection;
     }
 
     if (
       location.pathname === "" ||
       location.pathname === "/" ||
       location.pathname === "/p" ||
-      location.pathname === "/dummy/"
+      location.pathname === "/home/"
     ) {
       return <Redirect to={redirection} />;
-    } else if (currentUser && location.pathname.indexOf("login")===1) {
+    } else if ((currentUser && location.pathname.indexOf("login")===1)||(currentUser && location.pathname.indexOf("register")===1)) {
       return <Redirect to={redirection} />;
     }
     return (
@@ -82,6 +73,7 @@ console.log(currentUser)
               <div style={{ minHeight: `100vh` }}>
                 <Switch>
                   <RestrictedRoute
+                    {...this.props}
                     path={`${match.url}p`}
                     currentUser={true}
                     component={IndexPage}
