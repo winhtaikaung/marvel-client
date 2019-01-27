@@ -36,10 +36,15 @@ function dummyReducer(state = initialState, action) {
         ...state,
         data: action.payload.data.results || [],
         meta: {
-          count: action.payload.data.count,
-          limit: action.payload.data.limit,
-          offset: action.payload.data.offset,
-          total: action.payload.data.total
+          // count: action.payload.data.count,
+          // limit: action.payload.data.limit,
+          // offset: action.payload.data.offset,
+          // total: action.payload.data.total
+
+          count: 10,
+          limit: 10,
+          offset: 10,
+          total: 200
         },
         loading: false
       };

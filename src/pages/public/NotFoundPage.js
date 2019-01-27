@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 const NotFoundPage = props => {
-  console.log(props)
+  
   return (
     <div
       style={{
@@ -16,10 +17,18 @@ const NotFoundPage = props => {
       }}
     >
       <h2 style={{color:`white`}}>¯\_(ツ)_/¯</h2>
-      <h2 style={{color:`white`}}>404 Not Found!</h2>
+      <h2 style={{color:`white`}}>{props.title}</h2>
       <Link to="/" >Home</Link>
     </div>
   );
+};
+
+NotFoundPage.propTypes={
+  title:PropTypes.string
+}
+
+NotFoundPage.defaultProps = {
+  title: '404 Not Found!'
 };
 
 export default NotFoundPage;

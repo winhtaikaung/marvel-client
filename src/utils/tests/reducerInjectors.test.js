@@ -77,7 +77,7 @@ describe('reducer injectors', () => {
     it('given a store, it should provide a function to inject a reducer', () => {
       injectReducer('test', reducer);
 
-      // console.log(Object.keys(store.getState()))
+      
       const actual = store.getState()
       const expected = initialState;
 

@@ -21,15 +21,15 @@ export const initialState = {
   data: [],
   error: null,
   meta: {},
-  loading: false
+  isloading: false
 };
 
-function dummyReducer(state = initialState, action) {
+function detailReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CHARACTER_DETAIL:
       return {
         ...state,
-        loading: true
+        isloading: true
       };
     case GET_CHARACTER_DETAIL_SUCCESS:
       return {
@@ -41,17 +41,17 @@ function dummyReducer(state = initialState, action) {
           offset: action.payload.data.offset,
           total: action.payload.data.total
         },
-        loading: false
+        isloading: false
       };
     case GET_CHARACTER_DETAIL_FAILED:
       return {
         ...state,
         error: action.payload.error,
-        loading: false
+        isloading: false
       };
     default:
       return state;
   }
 }
 
-export default dummyReducer;
+export default detailReducer;

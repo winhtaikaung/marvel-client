@@ -11,7 +11,7 @@ import NotFoundPage from "../../pages/public/NotFoundPage";
 import IndexPage from "../../pages/";
 import Register from "../../pages/public/Register";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 const RestrictedRoute = ({ component: Component, currentUser, ...rest }) => (
   <Route
