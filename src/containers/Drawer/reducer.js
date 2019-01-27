@@ -16,6 +16,7 @@ import {
   GET_CHARACTER_DETAIL_FAILED
 } from "./constants";
 
+import produce from 'immer'
 // The initial state of the App
 export const initialState = {
   data: [],
@@ -24,34 +25,32 @@ export const initialState = {
   isloading: false
 };
 
-function detailReducer(state = initialState, action) {
+const detailReducer= (state = initialState, action)=> {
+  return produce(state, draft => {
   switch (action.type) {
     case GET_CHARACTER_DETAIL:
-      return {
-        ...state,
-        isloading: true
-      };
+      
+        draft.isloading= true
+        break;
     case GET_CHARACTER_DETAIL_SUCCESS:
-      return {
-        ...state,
-        data: action.payload.data.results || [],
-        meta: {
+     
+        draft.data=action.payload.data.results || []
+        draft.meta={
           count: action.payload.data.count,
           limit: action.payload.data.limit,
           offset: action.payload.data.offset,
           total: action.payload.data.total
-        },
-        isloading: false
-      };
+        }
+        draft.isloading= false
+      break;
     case GET_CHARACTER_DETAIL_FAILED:
-      return {
-        ...state,
-        error: action.payload.error,
-        isloading: false
-      };
+        draft.error= action.payload.error
+        draft.isloading=false
+     break;
     default:
       return state;
   }
+})
 }
 
 export default detailReducer;

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Button, Icon } from "antd";
 const PagingComponent = ({meta,onPrevClick,onNextClick}) => {
-  console.log(meta.offset)
+  
   return (
     <Button.Group style={{ float: `right` }} size={"large"}>
       {meta.offset>0 && <Button type="primary" onClick={()=>onPrevClick(meta.offset-1)}>
