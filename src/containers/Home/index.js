@@ -20,6 +20,8 @@ import Drawer from "../Drawer/index";
 import StateDrawer from "../Drawer/StateDrawer";
 import PagingComponent from "../../components/PagingComponent";
 import {getCharacterDetail} from '../Drawer/actions';
+import SkeletonImgeGrid from '../../components/SkeletonImageGrid'
+import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
 const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export class HomeContainer extends React.Component {
@@ -49,7 +51,7 @@ export class HomeContainer extends React.Component {
                   placeholder="Please type something to start searching"
                   size="large"
                   onChange={(e)=>{
-                    
+
                     this.setState({searchKey:e.target.value});
                   }}
                   onSearch={value =>{
@@ -63,25 +65,17 @@ export class HomeContainer extends React.Component {
             </Row>
           </header>
           <Content style={{ height: `70vh`, overflow: `scroll` }}>
-            <Skeleton
+            <SkeletonImgeGrid
               loading={this.props.loading}
-              paragraph={{ rows: 20 }}
-              active
             >
-              <div
-                style={{
-                  padding: "15px",
-                  marginLeft: `2em`,
-                  marginRight: `2em`
-                }}
-              >
+
                 <Row gutter={24}>
                   {this.props.data.map((item, index) => {
                     return (
                       <Col key={index} xs={24} sm={12} md={8} lg={8}>
                         <Card
                           onClick={() => {
-                            
+
                            this.setState({isDrawerOpen:true,id:item.id},()=>{
                              this.props.fetchCharacterDetail({id:item.id})
                            })
@@ -89,14 +83,18 @@ export class HomeContainer extends React.Component {
                           hoverable={true}
                           bordered={true}
                           cover={
+                            <SkeletonImage loading={this.props.loading} height="400">
                             <img
                               alt="example"
                               // style={{ height: `300px`, maxHeight: `800px` }}
+                              style={{"WebkitFilter":"blur(10px)","filter":"blur(10px)"}}
+                              onLoad={(e)=>{e.target.style.filter=""}}
                               height="400"
                               src={`${item.thumbnail.path}.${
                                 item.thumbnail.extension
-                              }`}
+                              }?${new Date().getTime()}`}
                             />
+                          </SkeletonImage>
                           }
                           style={{
                             marginTop: `2em`,
@@ -120,8 +118,8 @@ export class HomeContainer extends React.Component {
                     );
                   })}
                 </Row>
-              </div>
-            </Skeleton>
+
+            </SkeletonImgeGrid>
           </Content>
           <Footer>
             <PagingComponent
