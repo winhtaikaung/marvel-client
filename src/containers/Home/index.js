@@ -51,10 +51,14 @@ export class HomeContainer extends React.Component {
             <Row gutter={24}>
               <Col span={4} push={4} />
               <Col span={19}>
+              {/* Sub Module this part  */}
               <Popconfirm visible={this.state.initialLogin==="false" || !(this.state.initialLogin)?false:true} placement="bottom" title={"Please type something below to start searching"} onConfirm={()=>{
                 this.setState({initialLogin:false})
                 localStorage.setItem("isFirstTime",false)
-              }} okText="Ok" cancelText="I Got it"><Search
+              }} okText="Ok" onCancel={()=>{
+                this.setState({initialLogin:false})
+                localStorage.setItem("isFirstTime",false)
+              }}cancelText="Got it!"><Search
                   placeholder="Please type something to start searching"
                   size="large"
                   onChange={(e)=>{
