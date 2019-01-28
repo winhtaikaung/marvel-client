@@ -18,7 +18,7 @@ import {
   makeSelectmeta,
   makeSelectLoading
 } from "./selector";
-import { Link } from "react-router-dom";
+
 import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
 import NotFoundPage from "../../pages/public/NotFoundPage";
 
@@ -58,7 +58,7 @@ const DescriptionItem = ({ title, content, loading }) => (
         {upperFirst(title)}:
       </h4>
       <p>
-        <a target="_blank" href={content}>
+        <a rel="noopener noreferrer" target="_blank" href={content}>
           {content}
         </a>
       </p>
@@ -89,8 +89,8 @@ class DrawerContainer extends React.PureComponent {
           <React.Fragment>
             <Row style={{ marginTop: `2em` }}>
               <Col span={24} style={{textAlign: `center`}}>
-                <SkeletonImage loading={loading} width="400" height="400" >
-                {/* <div
+                <SkeletonImage loading={loading} width="400" height="200" >
+                <div
                   style={{
                     width: `100%`,
                     height: `calc(100vh/2.5)`,
@@ -100,7 +100,7 @@ class DrawerContainer extends React.PureComponent {
                       !isEmpty(data) ? data[0].thumbnail.path : ""
                     }.${!isEmpty(data) ? data[0].thumbnail.extension : ""})`
                   }}
-                > */}
+                >
 
                   <img
                     alt={``}
@@ -110,6 +110,7 @@ class DrawerContainer extends React.PureComponent {
                     style={{
                       minHeight: "400",
                       maxWidth: "400",
+                      opacity:"0",
                       "WebkitFilter":"blur(10px)","filter":"blur(10px)",
 
                     }}
@@ -117,7 +118,7 @@ class DrawerContainer extends React.PureComponent {
                       !isEmpty(data) ? data[0].thumbnail.extension : ""
                     }`}
                   />
-                {/* </div> */}
+                </div>
               </SkeletonImage>
               </Col>
               <Col span={24}>

@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import { createStructuredSelector } from "reselect";
-import { Row, Col, Card, Input, Skeleton, Layout, Button, Icon, Popconfirm } from "antd";
+import { Row, Col,  Skeleton, Layout, Popconfirm } from "antd";
 import injectReducer from "../../utils/injectReducer";
 import injectSaga from "../../utils/injectSaga";
-import { withRouter, Switch, Route, Redirect } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 import { getSearchCharacter } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
@@ -25,7 +25,7 @@ import SkeletonImgeGrid from '../../components/SkeletonImageGrid'
 import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
 import { AnimatedCard } from "../../components/AnimatedCard";
 import {AnimatedSearch} from '../../components/AnimatedSearchInput';
-import NotFoundPage from '../../pages/public/NotFoundPage';
+
 
 const {  Footer, Content } = Layout;
 
@@ -132,8 +132,8 @@ export class HomeContainer extends React.Component {
                     );
                   })}
                   {(isEmpty(this.props.data) && !(this.props.loading))&&
-                  <p style={{textAlign:`center`,marginTop:`calc(100vh/3)`}}><h1>¯\_(ツ)_/¯</h1>
-                  <h1>Items Not Found!</h1></p>
+                  <div style={{textAlign:`center`,marginTop:`calc(100vh/3)`}}><h1>¯\_(ツ)_/¯</h1>
+                  <h1>Items Not Found!</h1></div>
                   }
                 </Row>
 

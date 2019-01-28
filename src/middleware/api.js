@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, select } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 // import { getAuth, } from '../containers/CardDetailsPage/selectors';
 // import { getAppAuth, } from '../containers/ForgotPasswordPage/selectors';
 import _ from 'lodash';

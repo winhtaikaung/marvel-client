@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Button, Icon } from "antd";
-import { withState } from "recompose";
+
 
 const PagingComponent = ({
   meta,

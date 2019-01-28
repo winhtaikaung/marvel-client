@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 
 import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -29,7 +29,7 @@ const RestrictedRoute = (props) => {
 
 class App extends Component {
   render() {
-    const { match, currentUser, location,history } = this.props;
+    const { match, currentUser, location } = this.props;
     
     let redirection = "/p/home";
     let loc = (window.location + "").split("://");
