@@ -19,6 +19,7 @@ import {
   makeSelectLoading
 } from "./selector";
 import { Link } from "react-router-dom";
+import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
 import NotFoundPage from "../../pages/public/NotFoundPage";
 
 const TitleDescription = ({ title, content, loading }) => (
@@ -87,8 +88,9 @@ class DrawerContainer extends React.PureComponent {
         >
           <React.Fragment>
             <Row style={{ marginTop: `2em` }}>
-              <Col span={24}>
-                <div
+              <Col span={24} style={{textAlign: `center`}}>
+                <SkeletonImage loading={loading} width="400" height="400" >
+                {/* <div
                   style={{
                     width: `100%`,
                     height: `calc(100vh/2.5)`,
@@ -98,22 +100,25 @@ class DrawerContainer extends React.PureComponent {
                       !isEmpty(data) ? data[0].thumbnail.path : ""
                     }.${!isEmpty(data) ? data[0].thumbnail.extension : ""})`
                   }}
-                >
+                > */}
+
                   <img
                     alt={``}
+                    height="400"
+                    width="400"
+                    onLoad={(e)=>{e.target.style.filter=""}}
                     style={{
-                      minHeight: "calc(100vh/3)",
-                      minWidth: "100%",
-                      MsFilter:
-                        '"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"',
-                      filter: "alpha(opacity=0)",
-                      opacity: "0"
+                      minHeight: "400",
+                      maxWidth: "400",
+                      "WebkitFilter":"blur(10px)","filter":"blur(10px)",
+
                     }}
                     src={`${!isEmpty(data) ? data[0].thumbnail.path : ""}.${
                       !isEmpty(data) ? data[0].thumbnail.extension : ""
                     }`}
                   />
-                </div>
+                {/* </div> */}
+              </SkeletonImage>
               </Col>
               <Col span={24}>
                 <TitleDescription
@@ -152,7 +157,7 @@ class DrawerContainer extends React.PureComponent {
                 })}
           </React.Fragment>
         </Drawer>
-        
+
         {(isEmpty(data) && !loading) && <NotFoundPage title={"Requested character Found"} {...this.props}/>}
       </Fragment>
     );
