@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, notification } from "antd";
+import { Form, Icon, Input, Button, notification, Avatar } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
 } from "../../containers/App/selectors";
 import {  userRegister } from "../../containers/App/actions";
 import { createStructuredSelector } from "reselect";
+import { StyledForm } from "../../components/StyledForm";
 const Register = props => {
   const {
     handleSubmit,
@@ -27,10 +28,12 @@ const Register = props => {
       style={{
         display: "flex",
         justifyContent: "center",
-        marginTop: `calc(100vh/3)`
+        marginTop: `calc(100vh/4)`
       }}
     >
-      <Form onSubmit={handleSubmit} style={{ maxWidth: `300px` }}>
+      <StyledForm onSubmit={handleSubmit}>
+      <p style={{textAlign:`center`}}> <Avatar style={{backgroundColor:`#f56a00`}} shape="circle" size={64} icon="user" /></p>
+      <h1 style={{textAlign:`center`}}>Register</h1>
         <Form.Item
           validateStatus={errors.email ? "error" : ""}
           help={errors.email}
@@ -77,7 +80,7 @@ const Register = props => {
           </Button>
           Already have an account? <Link to="login">Sign In here</Link>
         </Form.Item>
-      </Form>
+      </StyledForm>
     </div>
   );
 };
@@ -114,6 +117,7 @@ const RegisterForm = withFormik({
   handleSubmit: (values, { props, setSubmitting, resetForm }) => {
     props.doRegister(values, (response, error) => {
       setSubmitting(false);
+      localStorage.setItem("isFirstTime",true);
       if (response) {
         
         notification.success({

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, notification } from "antd";
+import { Form, Icon, Input, Button, Checkbox, notification, Avatar } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
@@ -8,19 +8,25 @@ import {makeSelectCurrentUser, makeSelectLoading, makeSelectAuthUser,makeSelectE
 import {userSignIn} from '../../containers/App/actions';
 
 import {createStructuredSelector} from 'reselect';
+import {StyledForm} from '../../components/StyledForm';
 
 const Login = (props) => {
   const { handleSubmit, handleChange, errors,isValid,dirty ,isSubmitting } = props;
   
   return (
-    <div
+    <React.Fragment>
+      
+      <div
       style={{
         display: "flex",
         justifyContent: "center",
-        marginTop: `calc(100vh/3)`
+        marginTop: `calc(100vh/4)`
       }}
     >
-      <Form onSubmit={handleSubmit} style={{ maxWidth: `300px` }}>
+    
+      <StyledForm onSubmit={handleSubmit} >
+      <p style={{textAlign:`center`}}> <Avatar style={{backgroundColor:`#f56a00`}} shape="circle" size={64} icon="lock" /></p>
+        <h1 style={{textAlign:`center`}}>Login</h1>
         <Form.Item
          validateStatus={errors.email ? "error" : ""}
          help={errors.email}>
@@ -49,8 +55,8 @@ const Login = (props) => {
           </Button>
           Dont have an account? <Link to="register">register now!</Link>
         </Form.Item>
-      </Form>
-    </div>
+      </StyledForm>
+    </div></React.Fragment>
   );
 };
 
@@ -77,7 +83,7 @@ const LoginForm = withFormik({
       
       if(response){
         notification.success({
-          duration: 5,
+          duration: 1,
           message: "Login Success!",
           
         });

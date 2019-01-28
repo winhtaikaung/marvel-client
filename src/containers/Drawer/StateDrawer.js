@@ -87,17 +87,7 @@ class StateDrawerContainer extends React.PureComponent {
             <Row style={{ marginTop: `2em` }}>
               <Col span={24} style={{textAlign: `center`}}>
                 <SkeletonImage loading={loading} width="400" height="400" >
-                {/* <div
-                  style={{
-                    width: `100%`,
-                    height: `calc(100vh/2.5)`,
-                    backgroundPosition: "center center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundImage: `url(${
-                      !isEmpty(data) ? data[0].thumbnail.path : ""
-                    }.${!isEmpty(data) ? data[0].thumbnail.extension : ""})`
-                  }}
-                > */}
+               
 
                   <img
                     alt={``}
@@ -114,13 +104,13 @@ class StateDrawerContainer extends React.PureComponent {
                       !isEmpty(data) ? data[0].thumbnail.extension : ""
                     }`}
                   />
-                {/* </div> */}
+                
               </SkeletonImage>
               </Col>
               <Col span={24}>
                 <TitleDescription
-                  title={`${!isEmpty(data) ? data[0].name : ""}`}
-                  content={`${!isEmpty(data) ? data[0].description : ""}`}
+                  title={`${!isEmpty(data) ? data[0].name : "N.A"}`}
+                  content={`${!isEmpty(data) ? isEmpty(data[0].description)?"No descriptions available":data[0].description : "No descriptions available"}`}
                   loading={loading}
                 />
               </Col>

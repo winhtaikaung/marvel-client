@@ -10,6 +10,7 @@ import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import { getSearchCharacter } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
+import isEmpty from 'lodash/isEmpty'
 import {
   makeSelectCharacterList,
   makeSelectError,
@@ -22,9 +23,12 @@ import PagingComponent from "../../components/PagingComponent";
 import {getCharacterDetail} from '../Drawer/actions';
 import SkeletonImgeGrid from '../../components/SkeletonImageGrid'
 import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
+import { AnimatedCard } from "../../components/AnimatedCard";
+import {AnimatedSearch} from '../../components/AnimatedSearchInput';
+import NotFoundPage from '../../pages/public/NotFoundPage';
 
-const { Header, Footer, Content } = Layout;
-const Search = Input.Search;
+const {  Footer, Content } = Layout;
+
 export class HomeContainer extends React.Component {
 
   state={
@@ -58,7 +62,7 @@ export class HomeContainer extends React.Component {
               }} okText="Ok" onCancel={()=>{
                 this.setState({initialLogin:false})
                 localStorage.setItem("isFirstTime",false)
-              }}cancelText="Got it!"><Search
+              }}cancelText="Got it!"><AnimatedSearch
                   placeholder="Please type something to start searching"
                   size="large"
                   onChange={(e)=>{
@@ -69,7 +73,6 @@ export class HomeContainer extends React.Component {
                     this.setState({searchKey:value});
                     this.props.searchCharacter({ nameStartsWith: value,offset:0,limit:18 })
                   }}
-                  style={{ borderRadius: `50px` }}
                   enterButton
                 /></Popconfirm>
               </Col>
@@ -84,7 +87,7 @@ export class HomeContainer extends React.Component {
                   {this.props.data.map((item, index) => {
                     return (
                       <Col key={index} xs={24} sm={12} md={8} lg={8}>
-                        <Card
+                        <AnimatedCard
                           onClick={() => {
 
                            this.setState({isDrawerOpen:true,id:item.id},()=>{
@@ -124,10 +127,14 @@ export class HomeContainer extends React.Component {
                               <p>{item.descriptions}</p>
                             </div>
                           </Skeleton>
-                        </Card>
+                        </AnimatedCard>
                       </Col>
                     );
                   })}
+                  {(isEmpty(this.props.data) && !(this.props.loading))&&
+                  <p style={{textAlign:`center`,marginTop:`calc(100vh/3)`}}><h1>¯\_(ツ)_/¯</h1>
+                  <h1>Items Not Found!</h1></p>
+                  }
                 </Row>
 
             </SkeletonImgeGrid>
