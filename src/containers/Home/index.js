@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import { createStructuredSelector } from "reselect";
-import { Row, Col, Card, Input, Skeleton, Layout, Button, Icon } from "antd";
+import { Row, Col, Card, Input, Skeleton, Layout, Button, Icon, Popconfirm } from "antd";
 import injectReducer from "../../utils/injectReducer";
 import injectSaga from "../../utils/injectSaga";
 import { withRouter, Switch, Route, Redirect } from "react-router-dom";
@@ -22,6 +22,7 @@ import PagingComponent from "../../components/PagingComponent";
 import {getCharacterDetail} from '../Drawer/actions';
 import SkeletonImgeGrid from '../../components/SkeletonImageGrid'
 import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
+
 const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export class HomeContainer extends React.Component {
@@ -29,13 +30,16 @@ export class HomeContainer extends React.Component {
   state={
     searchKey:"a",
     isDrawerOpen:false,
-    id:""
+    id:"",
+    initialLogin:(localStorage.getItem("isFirstTime")===null)?true:localStorage.getItem("isFirstTime")
+
   }
   componentDidMount() {
     this.props.searchCharacter({ nameStartsWith: "a",offset:0,limit:18 });
   }
 
   render() {
+    console.log(this.state.initialLogin)
     return (
       <Fragment>
         <Switch>
@@ -47,7 +51,10 @@ export class HomeContainer extends React.Component {
             <Row gutter={24}>
               <Col span={4} push={4} />
               <Col span={19}>
-                <Search
+              <Popconfirm visible={this.state.initialLogin==="false" || !(this.state.initialLogin)?false:true} placement="bottom" title={"Please type something below to start searching"} onConfirm={()=>{
+                this.setState({initialLogin:false})
+                localStorage.setItem("isFirstTime",false)
+              }} okText="Ok" cancelText="I Got it"><Search
                   placeholder="Please type something to start searching"
                   size="large"
                   onChange={(e)=>{
@@ -60,7 +67,7 @@ export class HomeContainer extends React.Component {
                   }}
                   style={{ borderRadius: `50px` }}
                   enterButton
-                />
+                /></Popconfirm>
               </Col>
             </Row>
           </header>
@@ -144,13 +151,15 @@ const mapStateToProps = createStructuredSelector({
   data: makeSelectCharacterList(),
   error: makeSelectError(),
   meta: makeSelectmeta(),
+  
   loading: makeSelectLoading()
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     searchCharacter: payload => dispatch(getSearchCharacter(payload)),
-    fetchCharacterDetail: payload => dispatch(getCharacterDetail(payload))
+    fetchCharacterDetail: payload => dispatch(getCharacterDetail(payload)),
+    
   };
 };
 
