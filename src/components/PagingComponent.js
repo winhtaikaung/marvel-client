@@ -16,7 +16,7 @@ const PagingComponent = ({
         <Button
           type="primary"
           onClick={() => {
-            onPrevClick(meta.offset - 18);
+            onPrevClick(meta.offset - meta.limit);
           }}
           loading={loading}
         >
@@ -24,10 +24,13 @@ const PagingComponent = ({
           Prev
         </Button>
       )}
-      {meta.offset-18 < Math.ceil(meta.total) && (
+      {(meta.offset+meta.limit) < Math.ceil(meta.total) && (
         <Button
           type="primary"
-          onClick={() => onNextClick(meta.offset + 18)}
+          onClick={() => {
+            console.log(meta.offset,meta.total)
+            onNextClick(meta.offset + meta.limit)
+          }}
           loading={loading}
         >
           Next
