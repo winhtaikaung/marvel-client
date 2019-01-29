@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const selectGlobal = state => state.detail
+export const selectGlobal = state => state.detail
 
 export const makeSelectCharacterList = () =>
   createSelector(selectGlobal, globalState => globalState.data)

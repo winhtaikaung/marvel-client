@@ -1,7 +1,4 @@
 import {
-  LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
   POST_SIGN_IN,
   POST_SIGN_IN_SUCCESS,
   POST_SIGN_IN_FAILED,
@@ -14,9 +11,6 @@ import {
 } from "../constants";
 
 import {
-  loadRepos,
-  reposLoaded,
-  repoLoadingError,
   userSignIn,
   userRegister, 
   userSignOut, 

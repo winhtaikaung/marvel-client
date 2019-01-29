@@ -16,6 +16,8 @@ import {
   GET_CHARACTER_DETAIL_FAILED
 } from "./constants";
 
+import isEmpty from 'lodash/isEmpty'
+
 import produce from 'immer'
 // The initial state of the App
 export const initialState = {
@@ -34,17 +36,17 @@ const detailReducer= (state = initialState, action)=> {
         break;
     case GET_CHARACTER_DETAIL_SUCCESS:
      
-        draft.data=action.payload.data.results || []
+        draft.data=!isEmpty(action.payload)?action.payload.data.results: []
         draft.meta={
-          count: action.payload.data.count,
-          limit: action.payload.data.limit,
-          offset: action.payload.data.offset,
-          total: action.payload.data.total
+          count:!isEmpty(action.payload)? action.payload.data.count:0,
+          limit:!isEmpty(action.payload)? action.payload.data.limit:18,
+          offset:!isEmpty(action.payload)? action.payload.data.offset:0,
+          total: !isEmpty(action.payload)?action.payload.data.total:0
         }
         draft.isloading= false
       break;
     case GET_CHARACTER_DETAIL_FAILED:
-        draft.error= action.payload.error
+        draft.error= !isEmpty(action.payload)?action.payload.error:{}
         draft.isloading=false
      break;
     default:
