@@ -89,7 +89,7 @@ class DrawerContainer extends React.PureComponent {
           <React.Fragment>
             <Row style={{ marginTop: `2em` }}>
               <Col span={24} style={{textAlign: `center`}}>
-                <SkeletonImage loading={loading} width="400" height="200" >
+              <SkeletonImage loading={loading} width="" height={`${window.innerHeight/2.5}`}>
                 <div
                   style={{
                     width: `100%`,

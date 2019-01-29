@@ -33,7 +33,7 @@ const dummyReducer = (state = initialState, action) => {
         draft.loading = true;
         break;
       case GET_CHARACTER_SEARCH_API_SUCCESS:
-
+        draft.loading = false;
         draft.data=!isEmpty(action.payload)?action.payload.data.results: []
         draft.meta={
           count:!isEmpty(action.payload)? action.payload.data.count:0,

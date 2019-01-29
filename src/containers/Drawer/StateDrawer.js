@@ -86,7 +86,7 @@ class StateDrawerContainer extends React.PureComponent {
           <React.Fragment>
             <Row style={{ marginTop: `2em` }}>
               <Col span={24} style={{textAlign: `center`}}>
-                <SkeletonImage loading={loading} width="400" height="200" >
+                <SkeletonImage loading={loading} width="" height={`${window.innerHeight/2.5}`}>
                
                 <div
                   style={{
@@ -101,12 +101,10 @@ class StateDrawerContainer extends React.PureComponent {
                 >
                   <img
                     alt={``}
-                    height="400"
-                    width="400"
                     onLoad={(e)=>{e.target.style.filter=""}}
                     style={{
-                      minHeight: "400",
-                      maxWidth: "400",
+                      minHeight: "100%",
+                      maxWidth: "100%",
                       opacity:`0`,
                       "WebkitFilter":"blur(10px)","filter":"blur(10px)",
 
