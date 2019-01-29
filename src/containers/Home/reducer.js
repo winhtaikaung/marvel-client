@@ -16,6 +16,7 @@ import {
   GET_CHARACTER_SEARCH_API_FAILED
 } from "./constants";
 import produce from "immer";
+import isEmpty from 'lodash/isEmpty'
 // The initial state of the App
 export const initialState = {
   data: [],
@@ -32,17 +33,17 @@ const dummyReducer = (state = initialState, action) => {
         draft.loading = true;
         break;
       case GET_CHARACTER_SEARCH_API_SUCCESS:
-        draft.data = action.payload.data.results || [];
-        draft.meta = {
-          count: action.payload.data.count,
-          limit: action.payload.data.limit,
-          offset: action.payload.data.offset,
-          total: action.payload.data.total
-        };
-        draft.loading = false;
+
+        draft.data=!isEmpty(action.payload)?action.payload.data.results: []
+        draft.meta={
+          count:!isEmpty(action.payload)? action.payload.data.count:0,
+          limit:!isEmpty(action.payload)? action.payload.data.limit:18,
+          offset:!isEmpty(action.payload)? action.payload.data.offset:0,
+          total: !isEmpty(action.payload)?action.payload.data.total:0
+        }
         break;
       case GET_CHARACTER_SEARCH_API_FAILED:
-        draft.error = action.payload.error;
+        draft.error= !isEmpty(action.payload)?action.payload.error:{}
         draft.loading = false;
         break;
       default:

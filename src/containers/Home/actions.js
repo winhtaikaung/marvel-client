@@ -12,7 +12,7 @@ export const getSearchCharacter = (payload, callBack) => {
     types: [
       GET_CHARACTER_SEARCH_API, GET_CHARACTER_SEARCH_API_SUCCESS, GET_CHARACTER_SEARCH_API_FAILED
     ],
-    params:{apikey:MARVEL_API_PUBLIC_KEY,ts:timeStamp,hash:md5(`${timeStamp}${MARVEL_API_PRIVATE_KEY}${MARVEL_API_PUBLIC_KEY}`),...payload},
+    params:{apikey:MARVEL_API_PUBLIC_KEY,ts:(payload.timeStamp)?payload.timeStamp:timeStamp,hash:md5(`${(payload.timeStamp)?payload.timeStamp:timeStamp}${MARVEL_API_PRIVATE_KEY}${MARVEL_API_PUBLIC_KEY}`),...payload},
     callBack:callBack
 
   }
