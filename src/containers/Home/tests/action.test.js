@@ -1,16 +1,16 @@
 import {
   GET_CHARACTER_SEARCH_API, GET_CHARACTER_SEARCH_API_SUCCESS, GET_CHARACTER_SEARCH_API_FAILED
-} from "../constants";
+} from '../constants';
 import md5 from 'md5'
 import {
   
   getSearchCharacter
-} from "../actions";
-import { MARVEL_API_PUBLIC_KEY, MARVEL_API_PRIVATE_KEY } from "../../../utils/constants";
+} from '../actions';
+import { MARVEL_API_PUBLIC_KEY, MARVEL_API_PRIVATE_KEY } from '../../../utils/constants';
 
-describe("Home Actions", () => {
-  describe("getSearchCharacter", () => {
-    it("should return the correct type", () => {
+describe('Home Actions', () => {
+  describe('getSearchCharacter', () => {
+    it('should return the correct type', () => {
       const timeStamp = new Date().getTime().toString()
       const payload = {
         timeStamp:timeStamp
@@ -20,7 +20,7 @@ describe("Home Actions", () => {
         type: GET_CHARACTER_SEARCH_API,
     endpoint: `https://gateway.marvel.com/v1/public/characters`,
     method: 'get',
-    headers:{"X-Requested-with":""},
+    headers:{'X-Requested-with':''},
     types: [
       GET_CHARACTER_SEARCH_API, GET_CHARACTER_SEARCH_API_SUCCESS, GET_CHARACTER_SEARCH_API_FAILED
     ],

@@ -24,7 +24,7 @@ describe('drawerReducer', () => {
         state.isloading=true
         const expectedResult = state
         const payload = {
-          id:"3"
+          id:'3'
         }
         expect(appReducer(state, getCharacterDetail(payload))).toEqual(expectedResult);
     });
@@ -42,7 +42,7 @@ describe('drawerReducer', () => {
         }
         
         const expectedResult = state
-        expect(appReducer(state, {type:GET_CHARACTER_DETAIL_SUCCESS,id:"3"})).toEqual(expectedResult);
+        expect(appReducer(state, {type:GET_CHARACTER_DETAIL_SUCCESS,id:'3'})).toEqual(expectedResult);
     });
 
     it('should handle the userRegisterFailed action correctly', () => {
@@ -50,7 +50,7 @@ describe('drawerReducer', () => {
       state.isloading=false
       state.error={}
       const expectedResult = state
-      expect(appReducer(state, {type:GET_CHARACTER_DETAIL_FAILED,id:"3"})).toEqual(expectedResult);
+      expect(appReducer(state, {type:GET_CHARACTER_DETAIL_FAILED,id:'3'})).toEqual(expectedResult);
     });
 
   });

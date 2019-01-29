@@ -7,12 +7,12 @@ import {
   POST_REGISTER_FAILED,
   USER_SIGN_OUT,
   USER_SIGN_OUT_SUCCESS
-} from "./constants";
-import produce from "immer";
+} from './constants';
+import produce from 'immer';
 const initialState = {
   loading: false,
-  currentUser: localStorage.getItem("currentUser") || false,
-  authUser: JSON.parse(localStorage.getItem("authUser"), {}) || {},
+  currentUser: localStorage.getItem('currentUser') || false,
+  authUser: JSON.parse(localStorage.getItem('authUser'), {}) || {},
   register: null
 };
 const appReducer = (state = initialState, action) => {

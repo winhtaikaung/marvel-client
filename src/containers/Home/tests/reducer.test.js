@@ -24,7 +24,7 @@ describe('drawerReducer', () => {
         state.loading=true
         const expectedResult = state
         const payload = {
-          id:"3"
+          id:'3'
         }
         expect(appReducer(state, getSearchCharacter(payload))).toEqual(expectedResult);
     });

@@ -14,7 +14,7 @@ import {
   GET_CHARACTER_DETAIL,
   GET_CHARACTER_DETAIL_SUCCESS,
   GET_CHARACTER_DETAIL_FAILED
-} from "./constants";
+} from './constants';
 
 import isEmpty from 'lodash/isEmpty'
 

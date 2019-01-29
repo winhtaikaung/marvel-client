@@ -1,29 +1,29 @@
-import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-import { createStructuredSelector } from "reselect";
-import { Row, Col,  Skeleton, Layout, Popconfirm } from "antd";
-import injectReducer from "../../utils/injectReducer";
-import injectSaga from "../../utils/injectSaga";
-import { withRouter, Switch, Route } from "react-router-dom";
-import { getSearchCharacter } from "./actions";
-import reducer from "./reducer";
-import saga from "./saga";
+import { createStructuredSelector } from 'reselect';
+import { Row, Col,  Skeleton, Layout, Popconfirm } from 'antd';
+import injectReducer from '../../utils/injectReducer';
+import injectSaga from '../../utils/injectSaga';
+import { withRouter, Switch, Route } from 'react-router-dom';
+import { getSearchCharacter } from './actions';
+import reducer from './reducer';
+import saga from './saga';
 import isEmpty from 'lodash/isEmpty'
 import {
   makeSelectCharacterList,
   makeSelectError,
   makeSelectmeta,
   makeSelectLoading
-} from "./selector";
-import Drawer from "../Drawer/index";
-import StateDrawer from "../Drawer/StateDrawer";
-import PagingComponent from "../../components/PagingComponent";
+} from './selector';
+import Drawer from '../Drawer/index';
+import StateDrawer from '../Drawer/StateDrawer';
+import PagingComponent from '../../components/PagingComponent';
 import {getCharacterDetail} from '../Drawer/actions';
 import SkeletonImgeGrid from '../../components/SkeletonImageGrid'
 import SkeletonImage from '../../components/SkeletonImage/SkeletonImage'
-import { AnimatedCard } from "../../components/AnimatedCard";
+import { AnimatedCard } from '../../components/AnimatedCard';
 import {AnimatedSearch} from '../../components/AnimatedSearchInput';
 
 
@@ -32,14 +32,14 @@ const {  Footer, Content } = Layout;
 export class HomeContainer extends React.Component {
 
   state={
-    searchKey:"a",
+    searchKey:'a',
     isDrawerOpen:false,
-    id:"",
-    initialLogin:(localStorage.getItem("isFirstTime")===null)?true:localStorage.getItem("isFirstTime")
+    id:'',
+    initialLogin:(localStorage.getItem('isFirstTime')===null)?true:localStorage.getItem('isFirstTime')
 
   }
   componentDidMount() {
-    this.props.searchCharacter({ nameStartsWith: "a",offset:0,limit:18 });
+    this.props.searchCharacter({ nameStartsWith: 'a',offset:0,limit:18 });
   }
 
   render() {
@@ -49,22 +49,22 @@ export class HomeContainer extends React.Component {
         <Switch>
           <Route path={`${this.props.match.url}/:id`} component={Drawer} />
         </Switch>
-        <StateDrawer isOpen={this.state.isDrawerOpen} onClose={()=>this.setState({isDrawerOpen:!this.state.isDrawerOpen,id:""})} id={this.state.id}/>
+        <StateDrawer isOpen={this.state.isDrawerOpen} onClose={()=>this.setState({isDrawerOpen:!this.state.isDrawerOpen,id:''})} id={this.state.id}/>
         <Layout>
           <header style={{ padding: `calc(100vh/40)` }}>
             <Row gutter={24}>
               <Col span={4} push={4} />
               <Col span={19}>
               {/* Sub Module this part  */}
-              <Popconfirm visible={this.state.initialLogin==="false" || !(this.state.initialLogin)?false:true} placement="bottom" title={"Please type something below to start searching"} onConfirm={()=>{
+              <Popconfirm visible={this.state.initialLogin==='false' || !(this.state.initialLogin)?false:true} placement='bottom' title={'Please type something below to start searching'} onConfirm={()=>{
                 this.setState({initialLogin:false})
-                localStorage.setItem("isFirstTime",false)
-              }} okText="Ok" onCancel={()=>{
+                localStorage.setItem('isFirstTime',false)
+              }} okText='Ok' onCancel={()=>{
                 this.setState({initialLogin:false})
-                localStorage.setItem("isFirstTime",false)
-              }}cancelText="Got it!"><AnimatedSearch
-                  placeholder="Please type something to start searching"
-                  size="large"
+                localStorage.setItem('isFirstTime',false)
+              }}cancelText='Got it!'><AnimatedSearch
+                  placeholder='Please type something to start searching'
+                  size='large'
                   onChange={(e)=>{
 
                     this.setState({searchKey:e.target.value});
@@ -97,13 +97,13 @@ export class HomeContainer extends React.Component {
                           hoverable={true}
                           bordered={true}
                           cover={
-                            <SkeletonImage loading={this.props.loading} height="400">
+                            <SkeletonImage loading={this.props.loading} height='400'>
                             <img
-                              alt="example"
+                              alt='example'
                               // style={{ height: `300px`, maxHeight: `800px` }}
-                              style={{"WebkitFilter":"blur(10px)","filter":"blur(10px)"}}
-                              onLoad={(e)=>{e.target.style.filter=""}}
-                              height="400"
+                              style={{'WebkitFilter':'blur(10px)','filter':'blur(10px)'}}
+                              onLoad={(e)=>{e.target.style.filter=''}}
+                              height='400'
                               src={`${item.thumbnail.path}.${
                                 item.thumbnail.extension
                               }?${new Date().getTime()}`}
@@ -113,10 +113,10 @@ export class HomeContainer extends React.Component {
                           style={{
                             marginTop: `2em`,
                             WebkitBoxShadow:
-                              "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                              '-2px 10px 44px -2px rgba(0,0,0,0.13)',
                             MozBoxShadow:
-                              "-2px 10px 44px -2px rgba(0,0,0,0.13)",
-                            boxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                              '-2px 10px 44px -2px rgba(0,0,0,0.13)',
+                            boxShadow: '-2px 10px 44px -2px rgba(0,0,0,0.13)',
                             transition: `translate(0px, 0px)`,
                             opacity: `1`
                           }}
@@ -179,8 +179,8 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: "home", reducer });
-const withSaga = injectSaga({ key: "home", saga });
+const withReducer = injectReducer({ key: 'home', reducer });
+const withSaga = injectSaga({ key: 'home', saga });
 
 export default withRouter(
   compose(

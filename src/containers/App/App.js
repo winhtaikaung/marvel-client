@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 
-import { withRouter, Switch, Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { Layout,  } from "antd";
-import { createStructuredSelector } from "reselect";
-import { makeSelectCurrentUser } from "./selectors";
-import Login from "../../pages/public/Login";
-import NotFoundPage from "../../pages/public/NotFoundPage";
-import IndexPage from "../../pages/";
-import Register from "../../pages/public/Register";
-import AuthenticatedMenu from "../../components/AuthenticatedMenu";
+import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Layout,  } from 'antd';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectCurrentUser } from './selectors';
+import Login from '../../pages/public/Login';
+import NotFoundPage from '../../pages/public/NotFoundPage';
+import IndexPage from '../../pages/';
+import Register from '../../pages/public/Register';
+import AuthenticatedMenu from '../../components/AuthenticatedMenu';
 import {userSignOut} from './actions';
 
 const { Header, Content } = Layout;
@@ -20,7 +20,7 @@ const RestrictedRoute = (props) => {
     
     return (<Route  {...rest}  render={props => currentUser ? 
       ( <Component {...props} /> ) : 
-      ( <Redirect to={{ pathname: "/login", state: {from: props.location } }} />) 
+      ( <Redirect to={{ pathname: '/login', state: {from: props.location } }} />) 
       }
     />)
   
@@ -31,33 +31,33 @@ class App extends Component {
   render() {
     const { match, currentUser, location } = this.props;
     
-    let redirection = "/p/home";
-    let loc = (window.location + "").split("://");
+    let redirection = '/p/home';
+    let loc = (window.location + '').split('://');
     loc = loc[loc.length - 1];
-    loc = loc.split("/")[1] + "";
+    loc = loc.split('/')[1] + '';
     if (
-      loc.indexOf("home") === 0 &&
-      !(window.location + "").indexOf("localhost:") >= 0
+      loc.indexOf('home') === 0 &&
+      !(window.location + '').indexOf('localhost:') >= 0
     ) {
       // not on localhost with /p/ prefix
-      redirection = "/home" + redirection;
+      redirection = '/home' + redirection;
     }
 
     if (
-      location.pathname === "" ||
-      location.pathname === "/" ||
-      location.pathname === "/p" ||
-      location.pathname === "/home/"
+      location.pathname === '' ||
+      location.pathname === '/' ||
+      location.pathname === '/p' ||
+      location.pathname === '/home/'
     ) {
       return <Redirect to={redirection} />;
-    } else if ((currentUser && location.pathname.indexOf("login")===1)||(currentUser && location.pathname.indexOf("register")===1)) {
+    } else if ((currentUser && location.pathname.indexOf('login')===1)||(currentUser && location.pathname.indexOf('register')===1)) {
       return <Redirect to={redirection} />;
     }
     return (
       <React.Fragment>
         <Layout>
           <Header>
-            <div className="logo" />
+            <div className='logo' />
             <AuthenticatedMenu {...this.props}/>
           </Header>
           
@@ -70,10 +70,10 @@ class App extends Component {
                     currentUser={currentUser}
                     component={IndexPage}
                   />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/register" component={Register} />
+                  <Route exact path='/login' component={Login} />
+                  <Route exact path='/register' component={Register} />
                  
-                  <Route path="*" component={NotFoundPage} />
+                  <Route path='*' component={NotFoundPage} />
                 </Switch>
               </div>
             </Content>

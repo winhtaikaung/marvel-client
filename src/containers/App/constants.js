@@ -1,6 +1,6 @@
-import { APP_NAME } from "../../utils/constants";
+import { APP_NAME } from '../../utils/constants';
 
-const CONTAINER_NAME = "App";
+const CONTAINER_NAME = 'App';
 
 export const POST_SIGN_IN = `${APP_NAME}/${CONTAINER_NAME}/POST_SIGN_IN`;
 export const POST_SIGN_IN_SUCCESS = `${APP_NAME}/${CONTAINER_NAME}/POST_SIGN_IN_SUCCESS`;

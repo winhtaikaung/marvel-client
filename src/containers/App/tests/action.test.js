@@ -8,7 +8,7 @@ import {
   USER_SIGN_OUT, 
   USER_SIGN_OUT_SUCCESS, 
   USER_SIGN_OUT_FAILED
-} from "../constants";
+} from '../constants';
 
 import {
   userSignIn,
@@ -16,13 +16,13 @@ import {
   userSignOut, 
   userSignOutSuccess, 
   userSignOutFail
-} from "../actions";
+} from '../actions';
 
-describe("App Actions", () => {
-  describe("userSignIn", () => {
-    it("should return the correct type", () => {
+describe('App Actions', () => {
+  describe('userSignIn', () => {
+    it('should return the correct type', () => {
       const payload = {
-        foo: "bar"
+        foo: 'bar'
       };
       const callback = (response, error) => {};
       const expectedResult = {
@@ -30,9 +30,9 @@ describe("App Actions", () => {
         rootUrl: `https://reqres.in`,
         endpoint: `/api/login`,
         noAuth: true,
-        method: "post",
+        method: 'post',
         instantAction: response => {
-          console.log("FOO");
+          console.log('FOO');
         },
         types: [POST_SIGN_IN, POST_SIGN_IN_SUCCESS, POST_SIGN_IN_FAILED],
         params: payload,
@@ -45,10 +45,10 @@ describe("App Actions", () => {
     });
   });
 
-  describe("userRegister", () => {
-    it("should return the correct type and the passed repos", () => {
+  describe('userRegister', () => {
+    it('should return the correct type and the passed repos', () => {
       const payload = {
-        foo: "bar"
+        foo: 'bar'
       };
       const callback = (response, error) => {};
       const expectedResult = {
@@ -56,7 +56,7 @@ describe("App Actions", () => {
         rootUrl: `https://reqres.in`,
         endpoint: `/api/register`,
         noAuth: true,
-        method: "post",
+        method: 'post',
         types: [POST_REGISTER, POST_REGISTER_SUCCESS, POST_REGISTER_FAILED],
         params: payload,
         callback: callback
@@ -68,10 +68,10 @@ describe("App Actions", () => {
     });
   });
 
-  describe("userSignOut", () => {
-    it("should return the correct type Signout", () => {
+  describe('userSignOut', () => {
+    it('should return the correct type Signout', () => {
       const payload = {
-        foo: "bar"
+        foo: 'bar'
       };
       
       const expectedResult = {
@@ -85,10 +85,10 @@ describe("App Actions", () => {
     });
   });
 
-  describe("userSignOutSuccess", () => {
-    it("should return the correct type SignoutSuccess", () => {
+  describe('userSignOutSuccess', () => {
+    it('should return the correct type SignoutSuccess', () => {
       const payload = {
-        foo: "bar"
+        foo: 'bar'
       };
       
       const expectedResult = {
@@ -102,10 +102,10 @@ describe("App Actions", () => {
     });
   });
 
-  describe("userSignOutFail", () => {
-    it("should return the correct type SignoutFail", () => {
+  describe('userSignOutFail', () => {
+    it('should return the correct type SignoutFail', () => {
       const error = {
-        foo: "bar"
+        foo: 'bar'
       };
       
       const expectedResult = {

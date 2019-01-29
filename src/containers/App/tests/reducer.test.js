@@ -10,8 +10,8 @@ describe('appReducer', () => {
     beforeEach(() => {
       state ={
         loading: false,
-        currentUser: localStorage.getItem("currentUser") || false,
-        authUser: JSON.parse(localStorage.getItem("authUser"), {}) || {},
+        currentUser: localStorage.getItem('currentUser') || false,
+        authUser: JSON.parse(localStorage.getItem('authUser'), {}) || {},
         register: null
       };
     });

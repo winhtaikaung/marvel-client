@@ -1,18 +1,18 @@
 import {
   GET_CHARACTER_DETAIL, GET_CHARACTER_DETAIL_SUCCESS, GET_CHARACTER_DETAIL_FAILED
-} from "../constants";
+} from '../constants';
 import md5 from 'md5'
 import {
   getCharacterDetail
-} from "../actions";
-import { MARVEL_API_PUBLIC_KEY, MARVEL_API_PRIVATE_KEY } from "../../../utils/constants";
+} from '../actions';
+import { MARVEL_API_PUBLIC_KEY, MARVEL_API_PRIVATE_KEY } from '../../../utils/constants';
 
-describe("Drawer Actions", () => {
-  describe("getCharacterDetail", () => {
-    it("should return the correct type", () => {
+describe('Drawer Actions', () => {
+  describe('getCharacterDetail', () => {
+    it('should return the correct type', () => {
       const timeStamp = new Date().getTime().toString()
       const payload = {
-        id: "id",
+        id: 'id',
         timeStamp:timeStamp
       };
             
@@ -20,7 +20,7 @@ describe("Drawer Actions", () => {
         type: GET_CHARACTER_DETAIL,
         endpoint: `https://gateway.marvel.com/v1/public/characters/${payload.id}`,
         method: 'get',
-        headers:{"X-Requested-with":""},
+        headers:{'X-Requested-with':''},
         types: [
           GET_CHARACTER_DETAIL, GET_CHARACTER_DETAIL_SUCCESS, GET_CHARACTER_DETAIL_FAILED
         ],

@@ -14,8 +14,8 @@ import {
   GET_CHARACTER_SEARCH_API,
   GET_CHARACTER_SEARCH_API_SUCCESS,
   GET_CHARACTER_SEARCH_API_FAILED
-} from "./constants";
-import produce from "immer";
+} from './constants';
+import produce from 'immer';
 import isEmpty from 'lodash/isEmpty'
 // The initial state of the App
 export const initialState = {
