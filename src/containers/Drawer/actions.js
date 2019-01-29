@@ -8,6 +8,7 @@ export const getCharacterDetail = (payload, callBack) => {
     type: GET_CHARACTER_DETAIL,
     endpoint: `https://gateway.marvel.com/v1/public/characters/${payload.id}`,
     method: 'get',
+    noAuth:false,
     headers:{'X-Requested-with':''},
     types: [
       GET_CHARACTER_DETAIL, GET_CHARACTER_DETAIL_SUCCESS, GET_CHARACTER_DETAIL_FAILED
