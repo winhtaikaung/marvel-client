@@ -93,6 +93,7 @@ class StateDrawerContainer extends React.PureComponent {
                     width: `100%`,
                     height: `calc(100vh/2.5)`,
                     backgroundPosition: "center center",
+                    backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundImage: `url(${
                       !isEmpty(data) ? data[0].thumbnail.path : ""

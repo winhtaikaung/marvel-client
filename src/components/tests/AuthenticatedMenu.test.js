@@ -37,12 +37,7 @@ describe('<SkeletonImgeGrid />', () => {
     const renderer = new ShallowRenderer();
     renderer.render(<AuthenticatedMenu currentUser={false}/>);
     const result = renderer.getRenderOutput();
-    // console.log(result.props.children[1].props.children[0].props.type,'login')
-    // console.log(result.props.children[1].props.children[1],'Login')
-
-    // console.log(result.props.children[2].props.children[0].props.type,'form')
-    // console.log(result.props.children[2].props.children[1],'Register')
-    // console.log(result.props.children[0].props.children[1])
+   
     expect(result.props.children[1].props.children[0].props.type).toEqual('login');
     expect(result.props.children[1].props.children[1]).toEqual('Login');
     
@@ -50,35 +45,6 @@ describe('<SkeletonImgeGrid />', () => {
     expect(result.props.children[2].props.children[1]).toEqual('Register');
   });
 
-
-  // it('should render an <PagingComponent> show both Next and Prev', () => {
-  //   const updatedOffsetMeta={
-  //     offset:60,
-  //     limit:18,
-  //     total:100,
-  //   }
-  //   const renderer = new ShallowRenderer();
-  //   renderer.render(<PagingComponent meta={updatedOffsetMeta}/>);
-  //   const result = renderer.getRenderOutput();
-  //   // console.log(result.props.children[0].props.children[1])
-    
-  //   expect(result.props.children[0].props.children[1]).toEqual('Prev');
-  //   expect(result.props.children[1].props.children[0]).toEqual('Next');
-  // });
-
-  // it('should render an <PagingComponent> show  Prev', () => {
-  //   const updatedOffsetMeta={
-  //     offset:90,
-  //     limit:18,
-  //     total:100,
-  //   }
-  //   const renderer = new ShallowRenderer();
-  //   renderer.render(<PagingComponent meta={updatedOffsetMeta}/>);
-  //   const result = renderer.getRenderOutput();
-  //   console.log(result.props.children[0].props.children[1])
-  //   expect(result.props.children[0].props.children[1]).toEqual('Prev');
-  // });
-
-  
+ 
 
 });

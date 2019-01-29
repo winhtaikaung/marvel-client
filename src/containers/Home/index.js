@@ -43,7 +43,7 @@ export class HomeContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.initialLogin)
+    console.log(this.props)
     return (
       <Fragment>
         <Switch>
