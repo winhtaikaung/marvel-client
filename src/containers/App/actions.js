@@ -32,6 +32,20 @@ export const userSignIn = (payload,callback) => {
     }
   }
 
+  export const userRegisterSuccess = payload => {
+    return {
+      type: POST_REGISTER_SUCCESS,
+      payload,
+    }
+  }
+
+  export const userRegisterFailed = payload => {
+    return {
+      type: POST_REGISTER_FAILED,
+      payload,
+    }
+  }
+
   export const userSignOut = payload => {
     return {
       type: USER_SIGN_OUT,
