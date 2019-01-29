@@ -8,6 +8,7 @@ export const getSearchCharacter = (payload, callBack) => {
     type: GET_CHARACTER_SEARCH_API,
     endpoint: `https://gateway.marvel.com/v1/public/characters`,
     method: 'get',
+    noAuth:false,
     headers:{'X-Requested-with':''},
     types: [
       GET_CHARACTER_SEARCH_API, GET_CHARACTER_SEARCH_API_SUCCESS, GET_CHARACTER_SEARCH_API_FAILED

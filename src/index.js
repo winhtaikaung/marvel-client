@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "@babel/polyfill";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router/immutable";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import '@babel/polyfill';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router/immutable';
 
-import history from "./utils/history";
-import "sanitize.css/sanitize.css";
-import "./index.css";
+import history from './utils/history';
+import 'sanitize.css/sanitize.css';
+import './index.css';
 import 'antd/dist/antd.css';
-import App from "./containers/App/App";
-import * as serviceWorker from "./serviceWorker";
+import App from './containers/App/App';
+import * as serviceWorker from './serviceWorker';
 /**
  * app.js
  *
@@ -17,13 +17,13 @@ import * as serviceWorker from "./serviceWorker";
  * code.
  */
 // Import all the third party stuff
-import configureStore from "./configureStore";
-import { Switch } from "react-router-dom";
+import configureStore from './configureStore';
+import { Switch } from 'react-router-dom';
 
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById("root");
+const MOUNT_NODE = document.getElementById('root');
 
 const render = () => {
   ReactDOM.render(
@@ -47,8 +47,8 @@ if (module.hot) {
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-// if (process.env.NODE_ENV === "production") {
-//   require("offline-plugin/runtime").install(); // eslint-disable-line global-require
+// if (process.env.NODE_ENV === 'production') {
+//   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 // }
 render();
 serviceWorker.unregister();
