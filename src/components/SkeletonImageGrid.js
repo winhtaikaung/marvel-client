@@ -1,11 +1,11 @@
 import React from 'react';
-import { Row, Col, Card,  Skeleton } from "antd";
+import { Row, Col, Card,  Skeleton } from 'antd';
 import SkeletonImage from './SkeletonImage/SkeletonImage'
 const SkeletonImgeGrid = ({loading,children})=>{
 
   return (  <div
       style={{
-        padding: "15px",
+        padding: '15px',
         marginLeft: `2em`,
         marginRight: `2em`
       }}
@@ -23,17 +23,17 @@ const SkeletonImgeGrid = ({loading,children})=>{
                   <SkeletonImage
 
                     loading={loading}
-                    height="400"
+                    height='400'
 
                   />
                 }
                 style={{
                   marginTop: `2em`,
                   WebkitBoxShadow:
-                    "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                    '-2px 10px 44px -2px rgba(0,0,0,0.13)',
                   MozBoxShadow:
-                    "-2px 10px 44px -2px rgba(0,0,0,0.13)",
-                  boxShadow: "-2px 10px 44px -2px rgba(0,0,0,0.13)",
+                    '-2px 10px 44px -2px rgba(0,0,0,0.13)',
+                  boxShadow: '-2px 10px 44px -2px rgba(0,0,0,0.13)',
                   transition: `translate(0px, 0px)`,
                   opacity: `1`
                 }}

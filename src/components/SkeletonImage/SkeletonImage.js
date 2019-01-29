@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from "styled-components";
-import {shimmerKeyFrame} from "../KeyFrames";
+import styled from 'styled-components';
+import {shimmerKeyFrame} from '../KeyFrames';
 
 export const PlaceHolderImage = styled.img `
   animation-duration: 1.4s;

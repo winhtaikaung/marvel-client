@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Icon } from "antd";
+import React from 'react';
+import { Button, Icon } from 'antd';
 
 
 const PagingComponent = ({
@@ -11,22 +11,22 @@ const PagingComponent = ({
   setTotalPage
 }) => {
   return (
-    <Button.Group style={{ float: `right` }} size={"large"}>
+    <Button.Group style={{ float: `right` }} size={'large'}>
       {meta.offset > 0 && (
         <Button
-          type="primary"
+          type='primary'
           onClick={() => {
             onPrevClick(meta.offset - meta.limit);
           }}
           loading={loading}
         >
-          <Icon type="left" />
+          <Icon type='left' />
           Prev
         </Button>
       )}
       {(meta.offset+meta.limit) < Math.ceil(meta.total) && (
         <Button
-          type="primary"
+          type='primary'
           onClick={() => {
             console.log(meta.offset,meta.total)
             onNextClick(meta.offset + meta.limit)
@@ -34,7 +34,7 @@ const PagingComponent = ({
           loading={loading}
         >
           Next
-          <Icon type="right" />
+          <Icon type='right' />
         </Button>
       )}
     </Button.Group>
