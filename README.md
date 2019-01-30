@@ -7,6 +7,10 @@
 
 This projected is created with [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html)
 
+## Prerequisite
+Node version should be more than 8
+`Node version >= 8`
+
 ## Available Scripts
 
 Before you start you may have to run following command in project directory

@@ -53,7 +53,7 @@ const Login = (props) => {
           <Button disabled={!(dirty && isValid) || isSubmitting} type='primary' htmlType='submit' style={{ width: `100%` }}>
             Log in
           </Button>
-          Dont have an account? <Link to='register'>register now!</Link>
+          Don't have an account? <Link to='register'>register now!</Link>
         </Form.Item>
       </StyledForm>
     </div></React.Fragment>
