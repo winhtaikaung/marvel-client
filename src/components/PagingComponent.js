@@ -28,7 +28,7 @@ const PagingComponent = ({
         <Button
           type='primary'
           onClick={() => {
-            console.log(meta.offset,meta.total)
+            
             onNextClick(meta.offset + meta.limit)
           }}
           loading={loading}

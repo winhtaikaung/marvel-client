@@ -15,12 +15,12 @@ class IndexPage extends Component {
 
     return (
       <div>
-        <div>
+        
           <Switch>
             <Route path={`${match.url}/home`} component={Home} />
             <Route path='*' component={NotFoundPage} />
           </Switch>
-        </div>
+        
       </div>
     );
   }

@@ -11,6 +11,7 @@ import {createStructuredSelector} from 'reselect';
 import {StyledForm} from '../../components/StyledForm';
 
 const Login = (props) => {
+  console.log(props)
   const { handleSubmit, handleChange, errors,isValid,dirty ,isSubmitting } = props;
   
   return (
