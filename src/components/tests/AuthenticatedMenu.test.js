@@ -27,8 +27,8 @@ describe('<SkeletonImgeGrid />', () => {
     const renderer = new ShallowRenderer();
     renderer.render(<AuthenticatedMenu currentUser={true}/>);
     const result = renderer.getRenderOutput();
-    // console.log(result.props.children[0].props.children[0].props.type,'logout')
-    // console.log(result.props.children[0].props.children[1])
+    
+    
     expect(result.props.children[0].props.children[1]).toEqual('Logout');
     expect(result.props.children[0].props.children[0].props.type).toEqual('logout');
   });

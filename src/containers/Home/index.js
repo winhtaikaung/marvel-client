@@ -11,6 +11,7 @@ import { getSearchCharacter } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import isEmpty from 'lodash/isEmpty'
+
 import {
   makeSelectCharacterList,
   makeSelectError,
@@ -43,7 +44,7 @@ export class HomeContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    
     return (
       <Fragment>
         <Switch>
@@ -66,12 +67,19 @@ export class HomeContainer extends React.Component {
                   placeholder='Please type something to start searching'
                   size='large'
                   onChange={(e)=>{
-
-                    this.setState({searchKey:e.target.value});
+                    const {searchCharacter}=this.props
+                    
+                    searchCharacter({ nameStartsWith: e.target.value||"a",offset:0,limit:18 })
+                    
+                    this.setState({searchKey:e.target.value||"a"});
                   }}
                   onSearch={value =>{
+                    
                     this.setState({searchKey:value});
-                    this.props.searchCharacter({ nameStartsWith: value,offset:0,limit:18 })
+                    if(!isEmpty(value)){
+                      this.props.searchCharacter({ nameStartsWith: value,offset:0,limit:18 })
+                    }
+                    
                   }}
                   enterButton
                 /></Popconfirm>

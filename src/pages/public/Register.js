@@ -28,7 +28,7 @@ const Register = props => {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        marginTop: `calc(100vh/4)`
+        marginTop: `calc(100vh/8)`
       }}
     >
       <StyledForm onSubmit={handleSubmit}>
