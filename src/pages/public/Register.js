@@ -65,7 +65,7 @@ const Register = props => {
             id='confirm_password'
             prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
             type='password'
-            placeholder='Confirm Password'
+            placeholder='Confirm password'
             onChange={handleChange}
           />
         </Form.Item>
@@ -109,7 +109,7 @@ const RegisterForm = withFormik({
     }
 
     if (values.password !== values.confirm_password) {
-      errors.confirm_password = 'Confirm Password and password should match';
+      errors.confirm_password = 'Confirm password and password should match';
     }
 
     return errors;
