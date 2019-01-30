@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 
 import history from './utils/history';
-import 'sanitize.css/sanitize.css';
 import './index.css';
 import 'antd/dist/antd.css';
 import App from './containers/App/App';
